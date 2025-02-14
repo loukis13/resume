@@ -1,13 +1,5 @@
 import streamlit as st
 import os
-from openai import OpenAI
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
-
-# Set up OpenAI Client
-client = OpenAI()
 
 # Streamlit page setup
 st.set_page_config(page_title="Thanos' Resume", page_icon="📄", layout="centered")
@@ -20,7 +12,7 @@ Click the button below to access my resume.
 """)
 
 # Resume File Path
-resume_path = "Athanasios Loukakos CV.pdf"  # Ensure the file is in the same folder as this script
+resume_path = "Athanasios Loukakos CV.pdf"  # Make sure this file is in the same folder
 
 # Check if the file exists before displaying the button
 if os.path.exists(resume_path):
@@ -44,7 +36,3 @@ st.markdown("""
 📧 Email: thanos.loukakos@gmail.com  
 🔗 [LinkedIn](https://www.linkedin.com/in/thanos-loukakos-2180ba210/)
 """)
-
-
-
-#streamlit run resume_link.py
