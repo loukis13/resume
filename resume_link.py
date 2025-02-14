@@ -5,7 +5,7 @@ import os
 st.set_page_config(page_title="Thanos' Resume", page_icon="📄", layout="centered")
 
 # Page Title
-st.title("Welcome to My Resume Page")
+st.title("Welcome to Thanos's Resume Page")
 st.write("""
 ### 📌 View or Download My Resume
 Click the button below to access my resume.
