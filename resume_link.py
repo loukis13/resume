@@ -16,9 +16,13 @@ st.markdown(
     }
     .subtitle {
         text-align: center;
-        font-size: 22px;
+        font-size: 20px;
         font-weight: bold;
         margin-bottom: 20px;
+    }
+    .button-style {
+        font-size: 20px;
+        font-weight: bold;
     }
     .description-container {
         display: flex;
@@ -68,13 +72,14 @@ if os.path.exists(resume_path):
     with open(resume_path, "rb") as resume_file:
         resume_bytes = resume_file.read()
 
-    # Display the download button
+    # Display the download button with adjusted font size
     st.download_button(
         label="📄 Download My Resume",
         data=resume_bytes,
         file_name="Athanasios_Loukakos_Resume.pdf",
         mime="application/pdf",
-        help="Click to download my resume"
+        help="Click to download my resume",
+        key="download_resume"
     )
 else:
     st.error("❌ Resume file not found. Please check the file name and location.")
