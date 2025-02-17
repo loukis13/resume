@@ -1,77 +1,92 @@
 import streamlit as st
 import os
-from PIL import Image
-import time
 
 # Streamlit page setup
 st.set_page_config(page_title="Thanos' Resume", page_icon="📄", layout="wide")
 
-# Sidebar Navigation
-st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "Contact"])
+# Custom Styles
+st.markdown(
+    """
+    <style>
+    .title {
+        text-align: center;
+        font-size: 36px;
+        font-weight: bold;
+        color: #0077b5;
+    }
+    .subtitle {
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .center {
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
-# Load LinkedIn Picture
-image_path = "linkedin picture.jpg"
-if os.path.exists(image_path):
-    profile_image = Image.open(image_path)
+# Page Title
+st.markdown('<h1 class="title">Welcome to Thanos\' Resume Page</h1>', unsafe_allow_html=True)
+
+# LinkedIn Profile Image
+linkedin_image_path = "linkedin picture.jpg"  # Ensure this file is in the same directory
+if os.path.exists(linkedin_image_path):
+    st.image(linkedin_image_path, width=200, caption="Thanos Loukakos", use_column_width=False)
+
+# Section: Resume Download
+st.markdown('<h2 class="subtitle">📌 View or Download My Resume</h2>', unsafe_allow_html=True)
+resume_path = "Athanasios Loukakos Resume.pdf"  # Updated file name
+
+# Check if the file exists before displaying the button
+if os.path.exists(resume_path):
+    with open(resume_path, "rb") as resume_file:
+        resume_bytes = resume_file.read()
+
+    # Display the download button with a more interactive style
+    st.markdown('<div class="center">', unsafe_allow_html=True)
+    st.download_button(
+        label="📄 Download My Resume",
+        data=resume_bytes,
+        file_name="Athanasios_Loukakos_Resume.pdf",
+        mime="application/pdf",
+        help="Click to download my resume"
+    )
+    st.markdown('</div>', unsafe_allow_html=True)
 else:
-    profile_image = None
+    st.error("❌ Resume file not found. Please check the file name and location.")
 
-if page == "Home":
-    # Profile Section
-    col1, col2 = st.columns([1, 2])
-    
-    with col1:
-        if profile_image:
-            st.image(profile_image, caption="Athanasios Loukakos", width=200)
-        else:
-            st.warning("Profile image not found.")
-    
-    with col2:
-        st.title("Welcome to Thanos's Resume Page ✨")
-        st.write("""
-        **Hello! I'm Athanasios 'Thanos' Loukakos, an aspiring professional in finance and data analytics.**
-        
-        Explore my resume, connect with me on LinkedIn, or send me an email. Looking forward to networking!
-        """)
-        
-        # Animated loading effect
-        with st.spinner("Loading resume..."):
-            time.sleep(1)
+# Sidebar Contact Details
+st.sidebar.markdown("## 📬 Contact Me")
+st.sidebar.write("📧 Email: thanos.loukakos@gmail.com")
+st.sidebar.write("🔗 [LinkedIn](https://www.linkedin.com/in/thanos-loukakos-2180ba210/)")
 
-        # Resume Download Section
-        resume_path = "Athanasios Loukakos Resume.pdf"
-        if os.path.exists(resume_path):
-            with open(resume_path, "rb") as resume_file:
-                resume_bytes = resume_file.read()
-            
-            st.download_button(
-                label="📄 Download My Resume",
-                data=resume_bytes,
-                file_name="Athanasios_Loukakos_Resume.pdf",
-                mime="application/pdf",
-                help="Click to download my latest resume."
-            )
-        else:
-            st.error("❌ Resume file not found. Please check the file name and location.")
-    
-elif page == "Contact":
-    st.title("📞 Contact Me")
+# Interactive About Me Section
+st.markdown("---")
+st.markdown('<h2 class="subtitle">👋 About Me</h2>', unsafe_allow_html=True)
+
+with st.expander("Click to learn more about me"):
     st.write("""
-    Feel free to reach out to me via email or LinkedIn.
+    I am a highly motivated individual with a background in Economics and Finance. 
+    With hands-on experience in **data analysis, compliance, automation**, and **financial modeling**, 
+    I bring a mix of technical and business expertise.
+
+    Skills:
+    - 📊 **Data Analytics & Visualization:** Excel, Power BI, Tableau
+    - 🐍 **Programming:** Python (Pandas, NumPy, Streamlit)
+    - 🔍 **Financial Risk & Compliance:** SQL, Alteryx, Corporate Finance
+    - 🎯 **Passions:** Basketball 🏀, Ironman training 🏊‍♂️🚴‍♂️🏃‍♂️, and Tech Enthusiasm 💻
+
+    Feel free to connect with me for opportunities or collaborations!
     """)
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        st.write("📧 **Email:** thanos.loukakos@gmail.com")
-        st.button("Send Email", on_click=lambda: st.write("Copy my email: thanos.loukakos@gmail.com"))
-    
-    with col2:
-        st.write("🔗 **LinkedIn:** [Visit my profile](https://www.linkedin.com/in/thanos-loukakos-2180ba210/)")
-        st.button("Open LinkedIn", on_click=lambda: st.write("Click the link above to visit my profile."))
+
+# Add a fun interactive button
+if st.button("Say Hi 👋"):
+    st.success("Hello! Thanks for visiting my page. Feel free to reach out!")
 
 # Footer
-st.markdown("""
----
-💡 *Built with Streamlit* | 🚀 *Interactive Resume Site*
-""")
+st.markdown("---")
+st.markdown("© 2025 Thanos Loukakos | Powered by Streamlit 🚀")
