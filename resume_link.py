@@ -2,7 +2,7 @@ import streamlit as st
 import os
 
 # Streamlit page setup
-st.set_page_config(page_title="Athanasios (Thanos)' Resume", page_icon="📄", layout="wide")
+st.set_page_config(page_title="Thanos' Resume", page_icon="📄", layout="wide")
 
 # Custom Styles
 st.markdown(
@@ -52,7 +52,7 @@ col1, col2 = st.columns([1, 3])  # Adjust width ratio
 linkedin_image_path = "linkedin picture.jpg"  # Ensure this file is in the same directory
 if os.path.exists(linkedin_image_path):
     with col1:
-        st.image(linkedin_image_path, width=150, caption="Thanos Loukakos")
+        st.image(linkedin_image_path, width=150, caption="Thanos (Athanasios) Loukakos")
 
 # Description
 with col2:
@@ -65,7 +65,7 @@ with col2:
 
 # Section: Resume Download
 st.markdown('<h2 class="subtitle">📌 View or Download My Resume</h2>', unsafe_allow_html=True)
-resume_path = "Athanasios Loukakos Resume.pdf"  # Updated file name
+resume_path = "Athanasios (Thanos) Loukakos Resume.pdf"  # Updated file name
 
 # Check if the file exists before displaying the button
 if os.path.exists(resume_path):
@@ -95,4 +95,4 @@ if st.button("Say Hi 👋"):
 
 # Footer
 st.markdown("---")
-st.markdown("© 2025 Thanos Loukakos | Powered by Streamlit 🚀")
+st.markdown("© 2025 Athanasios (Thanos) Loukakos | Powered by Streamlit 🚀")
