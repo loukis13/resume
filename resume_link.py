@@ -2,7 +2,7 @@ import streamlit as st
 import os
 
 # Streamlit page setup
-st.set_page_config(page_title="Thanos' Resume", page_icon="📄", layout="wide")
+st.set_page_config(page_title="Athanasios (Thanos)' Resume", page_icon="📄", layout="wide")
 
 # Custom Styles
 st.markdown(
